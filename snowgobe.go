@@ -95,7 +95,7 @@ func main() {
 		if win.GetChar() != 0 {
 			doExit(win);
 		}
-		time.Sleep(15 * time.Millisecond)
+		time.Sleep(time.Duration(sleepTime) * time.Millisecond)
 		move(win, flakes)
 		draw(win, flakes)
 	}
