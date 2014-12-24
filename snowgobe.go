@@ -11,7 +11,7 @@ import (
 )
 
 const sleepTime uint32 = 10
-const maxFlakes int = 100
+const flakeFactor float32 = 2.0
 
 type flake struct { 
 	x,y,vertSpeed, horzSpeed float32
@@ -86,8 +86,10 @@ func main() {
 	win.Timeout(0)
 	setupSignals(win)
 
-	flakes := make([]flake, maxFlakes)
-	for i := 0; i < maxFlakes;i++ {
+	_, width := win.MaxYX()
+
+	flakes := make([]flake, int(flakeFactor  * float32(width)))
+	for i := 0; i < len(flakes);i++ {
 		flakes[i] = newRandomFlake(win)
 	}
 
